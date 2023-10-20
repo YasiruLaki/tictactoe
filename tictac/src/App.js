@@ -1,13 +1,18 @@
 import './App.css';
 import Grid from './components/grid';
+import bg from "./assets/bg.jpg"
 
 function App() {
   return (
-    <div className="App">
+    <div>
 
-      <h1>Tic Tac Toe</h1>
-      <Grid />
-      
+      <div>
+      <img src={bg} className='bg'></img>
+      </div>
+
+      <div className="App">
+        <Grid />
+      </div>
 
     </div>
   );

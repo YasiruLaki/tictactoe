@@ -5,15 +5,30 @@ import cross from "../assets/cross.png";
 
 function Grid() {
   const [boxes, setBoxes] = useState(Array(9).fill(null));
-  const [isCircleTurn, setIsCircleTurn] = useState(true);
+  const [isCircleTurn, setIsCircleTurn] = useState(Math.random() < 0.5);
   const [winner, setWinner] = useState(null);
+  const [isComputerThinking, setIsComputerThinking] = useState(false);
+
+  var turn = null
 
   useEffect(() => {
-    if (!isCircleTurn && !winner) {
-      const bestMove = findBestMove(boxes, 'circle', 'cross');
-      makeMove(bestMove.index, 'circle');
+    if (!isCircleTurn && !winner && !isComputerThinking) {
+      setIsComputerThinking(true);
+      setTimeout(() => {
+        const bestMove = findBestMove(boxes, 'circle', 'cross');
+        makeMove(bestMove.index, 'circle');
+        setIsComputerThinking(false);
+      }, 500);
     }
-  }, [isCircleTurn, winner, boxes]);
+  }, [isCircleTurn, winner, boxes, isComputerThinking]);
+
+  const handleTurn = ()=>{
+    if (isComputerThinking) {
+      return <div>Turn: Computer</div>
+    } else{
+      return <div>Turn: Player</div>
+    }
+  }
 
   const makeMove = (index, symbol) => {
     if (!boxes[index] && !winner) {
@@ -149,10 +164,18 @@ function Grid() {
   };
 
   return (
-    <div>
-        <div>
-            <p>Vs Computer</p>
+    <div className='game'>
+        <div className='top-txts'>
+        <h1>Tic Tac Toe</h1>
+            <p>(Vs Computer)</p>
         </div>
+
+        <div>
+        <button className='turn'>
+          {handleTurn()}
+        </button>
+        </div>
+        
       <div className="grid">
         {Array(9).fill(null).map((_, index) => (
           <div key={index} className='box-container'>

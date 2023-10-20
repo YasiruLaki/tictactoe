@@ -1,3 +1,32 @@
+  @import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@500&display=swap');
+
+.game{
+  color: white;
+  font-family: 'Grandstander', cursive;
+}
+
+.top-txts h1{
+  font-size: 50px;
+  margin-bottom: 0%;
+}
+
+.top-txts p{
+  margin-top: 5px;
+}
+
+.turn{
+  font-family: 'Grandstander', cursive;
+  font-size: 22px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  color: black;
+  background-color: white;
+  border-style: solid;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .grid {
   display: inline-grid;
   grid-template-columns: auto auto auto;
@@ -30,6 +59,7 @@
 
 .btn{
     font-size: 20px;
+    margin-top: 15px;
 }
 
 #box-1 {
@@ -87,5 +117,8 @@
 }
 
 .footer h1 {
-  font-size: 17px;
+  font-size: 15px;
+}
+.footer a{
+  color: white;
 }
