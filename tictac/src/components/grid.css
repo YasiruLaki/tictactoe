@@ -1,0 +1,91 @@
+.grid {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  margin: 0, auto;
+}
+
+.box {
+  background-color: #011739ee;
+  border: 7px solid rgba(186, 214, 252, 0.932);
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  text-align: center;
+}
+
+.box-click {
+  background-color: #011739ee;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  text-align: center;
+}
+
+.circle {
+  width: 80px;
+  padding-top: 10px;
+}
+
+.btn{
+    font-size: 20px;
+}
+
+#box-1 {
+  margin: 0;
+  border-top: none;
+  border-left: none;
+}
+#box-2 {
+  border-top: none;
+  border-left: none;
+}
+#box-3 {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+#box-4 {
+  border-top: none;
+  border-left: none;
+}
+#box-5 {
+  border-top: none;
+  border-left: none;
+}
+
+#box-6 {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+#box-7 {
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+}
+#box-8 {
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+}
+
+#box-9 {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0%;
+  text-align: center;
+}
+
+.footer h1 {
+  font-size: 17px;
+}
