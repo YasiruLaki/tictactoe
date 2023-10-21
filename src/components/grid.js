@@ -6,7 +6,7 @@ import bg from "../assets/bg.jpg"
 
 function Grid() {
   const [boxes, setBoxes] = useState(Array(9).fill(null));
-  const [isCircleTurn, setIsCircleTurn] = useState(Math.random() < 0.8);
+  const [isCircleTurn, setIsCircleTurn] = useState(Math.random() < 0.3);
   const [winner, setWinner] = useState(null);
   const [isComputerThinking, setIsComputerThinking] = useState(false);
 
@@ -77,7 +77,7 @@ function Grid() {
       if (!board[i]) {
         board[i] = player;
         const random = Math.random();
-        const score = random < 0.96 ? minimax(board, 0, false, player, opponent) : Math.random() * 10;
+        const score = random < 0.9 ? minimax(board, 0, false, player, opponent) : Math.random() * 10;
   
         board[i] = null;
   
