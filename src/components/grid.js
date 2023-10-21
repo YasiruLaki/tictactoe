@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './grid.css';
 import circle from "../assets/circle.png";
 import cross from "../assets/cross.png";
+import bg from "../assets/bg.jpg"
 
 function Grid() {
   const [boxes, setBoxes] = useState(Array(9).fill(null));
   const [isCircleTurn, setIsCircleTurn] = useState(Math.random() < 0.5);
   const [winner, setWinner] = useState(null);
   const [isComputerThinking, setIsComputerThinking] = useState(false);
-
-  var turn = null
 
   useEffect(() => {
     if (!isCircleTurn && !winner && !isComputerThinking) {
@@ -163,8 +162,31 @@ function Grid() {
     setWinner(null);
   };
 
+
+  const Modal = () => {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+}
+
   return (
+    <div>
     <div className='game'>
+              <div>
+      <img src={bg} className='bg'></img>
+      </div>
         <div className='top-txts'>
         <h1>Tic Tac Toe</h1>
             <p>(Vs Computer)</p>
@@ -175,7 +197,7 @@ function Grid() {
           {handleTurn()}
         </button>
         </div>
-        
+
       <div className="grid">
         {Array(9).fill(null).map((_, index) => (
           <div key={index} className='box-container'>
@@ -183,13 +205,17 @@ function Grid() {
           </div>
         ))}
       </div>
+      
+      <div className='results'>
+      {renderResult()}
+      </div>
       <div>
-        {renderResult()}
         <button className='btn' onClick={resetGame}>New Game</button>
       </div>
       <div className='footer'>
         <h1>Made with ❤️ by <a href='#'>Yasiru Lakintha</a></h1>
       </div>
+    </div>
     </div>
   );
 }
