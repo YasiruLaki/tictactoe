@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@500&display=swap');
+
+form{
+    font-family: 'Grandstander', cursive;
+    margin-bottom: 60px;
+    display: block;
+    width: 100%;
+}
+
+.form-input{
+    font-family: 'Grandstander', cursive;
+    color: black;
+    padding: 10px;
+    border-radius: 15px;
+    border: solid;
+    width: 45%;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+}
+
+form textarea{
+    height: 60px;
+}
+
+.form-btn{
+    font-size: 17px;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    font-family: 'Grandstander', cursive;
+    border: none;
+    border-radius: 17px;
+}
+
+.form-head{
+    font-size: 25px;
+    color: white;
+    font-family: 'Grandstander', cursive;
+}

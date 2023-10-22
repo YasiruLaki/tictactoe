@@ -77,7 +77,7 @@ function Grid() {
       if (!board[i]) {
         board[i] = player;
         const random = Math.random();
-        const score = random < 1 ? minimax(board, 0, false, player, opponent) : Math.random() * 10;
+        const score = random < 0.9 ? minimax(board, 0, false, player, opponent) : Math.random() * 10;
   
         board[i] = null;
   
