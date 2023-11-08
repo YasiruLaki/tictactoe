@@ -38,3 +38,9 @@ form textarea{
     color: white;
     font-family: 'Grandstander', cursive;
 }
+
+.message{
+    color: white;
+    font-family: 'Grandstander', cursive;
+    margin-bottom: 70px;
+}
