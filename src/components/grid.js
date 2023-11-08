@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './grid.css';
 import circle from "../assets/circle.png";
 import cross from "../assets/cross.png";
-import bg from "../assets/bg.jpg"
+import bg from "../assets/bg.jpg";
 
 function Grid() {
   const [boxes, setBoxes] = useState(Array(9).fill(null));
@@ -21,10 +21,10 @@ function Grid() {
     }
   }, [isCircleTurn, winner, boxes, isComputerThinking]);
 
-  const handleTurn = ()=>{
+  const handleTurn = () => {
     if (isComputerThinking) {
       return <div>Turn: Computer</div>
-    } else{
+    } else {
       return <div>Turn: Player</div>
     }
   }
@@ -72,12 +72,12 @@ function Grid() {
   function findBestMove(board, player, opponent) {
     let bestMove = null;
     let bestScore = -Infinity;
-
+  
     for (let i = 0; i < board.length; i++) {
       if (!board[i]) {
         board[i] = player;
         const random = Math.random();
-        const score = random < 0.9 ? minimax(board, 0, false, player, opponent) : Math.random() * 10;
+        const score = random < 0.95 ? minimax(board, 0, false, player, opponent) : Math.random() * 10;
   
         board[i] = null;
   
@@ -87,7 +87,7 @@ function Grid() {
         }
       }
     }
-
+  
     return { index: bestMove, score: bestScore };
   }
 
@@ -163,60 +163,38 @@ function Grid() {
     setWinner(null);
   };
 
-
-  const Modal = () => {
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-}
-
   return (
     <div>
-    <div className='game'>
-              <div>
-      <img src={bg} className='bg'></img>
-      </div>
-        <div className='top-txts'>
-        <h1>Tic Tac Toe</h1>
-            <p>(Vs Computer)</p>
-        </div>
-
+      <div className='game'>
         <div>
-        <button className='turn'>
-          {handleTurn()}
-        </button>
+          <img src={bg} className='bg' alt='background' />
         </div>
-
-      <div className="grid">
-        {Array(9).fill(null).map((_, index) => (
-          <div key={index} className='box-container'>
-            {renderBox(index)}
-          </div>
-        ))}
+        <div className='top-txts'>
+          <h1>Tic Tac Toe</h1>
+          <p>(Vs Computer)</p>
+        </div>
+        <div>
+          <button className='turn'>
+            {handleTurn()}
+          </button>
+        </div>
+        <div className="grid">
+          {Array(9).fill(null).map((_, index) => (
+            <div key={index} className='box-container'>
+              {renderBox(index)}
+            </div>
+          ))}
+        </div>
+        <div className='results'>
+          {renderResult()}
+        </div>
+        <div>
+          <button className='btn' onClick={resetGame}>New Game</button>
+        </div>
+        <div className='footer'>
+          <h1>Made with ❤️ by <a href='#'>Yasiru Lakintha</a></h1>
+        </div>
       </div>
-      
-      <div className='results'>
-      {renderResult()}
-      </div>
-      <div>
-        <button className='btn' onClick={resetGame}>New Game</button>
-      </div>
-      <div className='footer'>
-        <h1>Made with ❤️ by <a href='#'>Yasiru Lakintha</a></h1>
-      </div>
-    </div>
     </div>
   );
 }
