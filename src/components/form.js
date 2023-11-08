@@ -1,48 +1,59 @@
 import "./form.css";
 import React, { useState } from "react";
+import { doc, collection, setDoc, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../Config/firebase-config";
 
 function Form() {
-  const [order, setOrder] = useState(""); // Initialize order state
+    const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleChange = (event) => {
-    // Update the 'order' state with the input value
-    setOrder(event.target.value);
-  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const myForm = event.target;
-    const formData = new FormData(myForm);
-
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then(() => alert("Thank you for your submission"))
-      .catch((error) => alert(error));
+    try {
+      await setDoc(doc(db, "submissions", name), {
+        Name: name,
+        Comment: comment,
+        timestamp: serverTimestamp(),
+      });
+      setFormSubmitted(true);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div>
-      <div>
+      <div className="form">
         <h1 className="form-head">
           Got something to say?<br></br>Drop a line
         </h1>
-        <form
-          data-netlify="true"
-          name="pizzaOrder"
-          method="post"
-          onSubmit={handleSubmit}
-        >
-          <input type="hidden" name="form-name" value="pizzaOrder" />
-          <label>
-            What order did the pizza give to the pineapple?
-            <input name="order" type="text" value={order} onChange={handleChange} />
-          </label>
-          <input type="submit" />
-        </form>
+        {formSubmitted ? (
+          <div className="message">
+            <p>Thank you for your Submission!</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <input
+            className="form-input"
+              type="text"
+              placeholder="Name (If Prefer)"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            /><br></br>
+            <textarea required
+            className="form-input"
+              type="text"
+              placeholder="Comment"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            /><br></br>
+
+            <button className="form-btn" type="submit">Submit</button>
+          </form>
+        )}
       </div>
     </div>
   );
